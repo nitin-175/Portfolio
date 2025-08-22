@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitin Kumar Maurya | Portfolio</title>
+    <link rel="icon" href="/6140938905927668434.jpg" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS for animations and premium feel -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            cursor: none;
+            /* Hide the default cursor */
+
+        }
+
+        /* Site-wide Background Video */
+        #site-background {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -2;
+            filter: blur(2px);
+        }
+
+        #site-background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: -1;
+        }
+
+        /* Aurora Background Effect */
+        .aurora-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .aurora-background::before,
+        .aurora-background::after {
+            content: '';
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-image: radial-gradient(circle, rgba(79, 70, 229, 0.3) 0%, rgba(79, 70, 229, 0) 50%);
+            border-radius: 50%;
+            animation: moveAurora 25s infinite linear;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+        }
+
+        .aurora-background::after {
+            background-image: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0) 50%);
+            animation-delay: -12s;
+        }
+
+        @keyframes moveAurora {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) rotate(0deg) scale(1.5);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) rotate(180deg) scale(1.8);
+            }
+        }
+
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #334155;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(130, 140, 248, 0.2);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9998;
+            transition: transform 0.15s linear, background-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+        }
+
+        .cursor.hover {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+        }
+
+        .cursor-follower.hover {
+            width: 0;
+            height: 0;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        /* Glassmorphism header */
+        .glass-header {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Project card hover effect */
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-card {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 35px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Premium button hover glow */
+        .premium-button {
+            transition: all 0.3s ease;
+        }
+
+        .premium-button:hover {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Animation classes for scroll effects */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1), transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Text Animation */
+        #hero-headline .word-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        #hero-headline .word {
+            display: block;
+            transform: translateY(110%);
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        /* Hero Image Style */
+        .hero-image-container {
+            position: relative;
+            padding: 8px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4f46e5, #c084fc);
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+        }
+
+        .hero-image-container img {
+            border-radius: 50%;
+            border: 4px solid #0a0a0a;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: #334155;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #0a0a0a;
+            border: 4px solid #4f46e5;
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item.left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 32px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #334155;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #334155;
+        }
+
+        .timeline-item.right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 32px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #334155;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #334155 transparent transparent;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: #1e293b;
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.3);
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 15px;
+            }
+
+            .timeline-item.left::after,
+            .timeline-item.right::after {
+                left: 10px;
+            }
+
+            .timeline-item.left,
+            .timeline-item.right {
+                left: 0%;
+            }
+
+            .timeline-item.right::before,
+            .timeline-item.left::before {
+                left: 40px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent #334155 transparent transparent;
+            }
+        }
+
+        /* Contact Form */
+        .form-input {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #e2e8f0;
+            width: 100%;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
+        }
+
+        /* Certification Card Hover */
+        .certification-card {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.3);
+        }
+
+        /* Scroll to top button */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4f46e5;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        #scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #scroll-to-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* Section Backgrounds */
+        .section-bg {
+            background-image: radial-gradient(circle at 50% 50%, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0) 70%);
+        }
+
+        /* Design Gallery Scroller */
+        .scroller-container {
+            max-width: 100%;
+            overflow: hidden;
+            -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+            mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+        }
+
+        .scroller-track {
+            display: flex;
+            gap: 1.5rem; /* 24px */
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        
+        .scroller-container:hover .scroller-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            to {
+                transform: translateX(calc(-50% - 0.75rem)); /* 50% of track + half a gap */
+            }
+        }
+
+        .scroller-item {
+            position: relative;
+            flex-shrink: 0;
+            width: 350px;
+            height: 250px;
+            border-radius: 0.75rem; /* 12px */
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .scroller-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .scroller-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <video autoplay loop muted playsinline id="site-background">
+        <source src="bg video.mp4" type="video/mp4">
+    </video>
+    <div class="aurora-background"></div>
+    <div id="site-background-overlay"></div>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header id="header" class="glass-header fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-16 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold gradient-text magnetic-item">NITIN KUMAR MAURYA</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#hero" class="text-slate-300 hover:text-white transition duration-300 magnetic-item">Home</a>
+                <a href="#about" class="text-slate-300 hover:text-white transition duration-300 magnetic-item">About</a>
+                <a href="#experience"
+                    class="text-slate-300 hover:text-white transition duration-300 magnetic-item">Experience</a>
+                <a href="#projects"
+                    class="text-slate-300 hover:text-white transition duration-300 magnetic-item">Projects</a>
+                <a href="#certifications"
+                    class="text-slate-300 hover:text-white transition duration-300 magnetic-item">Certifications</a>
+                <a href="#contact"
+                    class="text-slate-300 hover:text-white transition duration-300 magnetic-item">Contact</a>
+            </nav>
+            <a href="#contact"
+                class="hidden md:block bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg premium-button magnetic-item">Hire
+                Me</a>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none magnetic-item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#hero" class="block py-2 text-slate-300 hover:text-white">Home</a>
+            <a href="#about" class="block py-2 text-slate-300 hover:text-white">About</a>
+            <a href="#experience" class="block py-2 text-slate-300 hover:text-white">Experience</a>
+            <a href="#projects" class="block py-2 text-slate-300 hover:text-white">Projects</a>
+            <a href="#certifications" class="block py-2 text-slate-300 hover:text-white">Certifications</a>
+            <a href="#contact" class="block py-2 text-slate-300 hover:text-white">Contact</a>
+            <a href="#contact"
+                class="block mt-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg text-center">Hire
+                Me</a>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center">
+            <div class="container mx-auto px-6 lg:px-16">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Column: Text Content -->
+                    <div class="text-center md:text-left">
+                        <h1 id="hero-headline"
+                            class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4 min-h-[100px] md:min-h-[120px] lg:min-h-[144px]">
+                            I'm a <span id="typing-text" class="gradient-text"></span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-300 max-w-xl mx-auto md:mx-0 mb-8 fade-in-up"
+                            style="transition-delay: 400ms;">
+                            I design and build beautiful, responsive, and user-centric web applications that leave a
+                            lasting impression.
+                        </p>
+                        <div class="flex gap-4 justify-center md:justify-start">
+                            <a href="#projects"
+                                class="bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-indigo-700 inline-block premium-button magnetic-item fade-in-up"
+                                style="transition-delay: 600ms;">View My Work</a>
+                            <a href="resume_nitin_kumar_maurya.pdf" target="_blank"
+                                class="bg-slate-700 text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-slate-600 inline-block premium-button magnetic-item fade-in-up"
+                                style="transition-delay: 700ms;">Download Resume</a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Image -->
+                    <div class="flex justify-center md:justify-end fade-in-up" style="transition-delay: 800ms;">
+                        <div class="hero-image-container w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                            <img src="/6140938905927668434.jpg" alt="Nitin Portrait"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32 section-bg">
+            <div class="container mx-auto px-6 lg:px-16">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="fade-in-up">
+                        <h2 class="text-4xl font-bold mb-4 text-white">About Me</h2>
+                        <p class="text-slate-400 mb-6 text-lg">Hello! I'm Nitin Kumar Maurya, a versatile Web 
+                            Developer and Designer with hands-on experience in HTML, CSS, JavaScript, React, 
+                            Figma, and Canva. I specialize in crafting responsive websites and intuitive user 
+                            interfaces that balance functionality with modern design. Passionate about 
+                            delivering seamless digital experiences, I focus on writing clean code and creating 
+                            engaging visuals that leave a lasting impression.</p>
+                        <p class="text-slate-400 mb-8 text-lg">When I'm not coding, you can find me exploring the latest
+                            design trends, contributing to open-source projects, or brewing the perfect cup of coffee.
+                        </p>
+                    </div>
+                    <div class="fade-in-up" style="transition-delay: 200ms;">
+                        <h3 class="text-2xl font-semibold mb-6 text-white">My Skillset</h3>
+                        <div class="flex flex-wrap gap-4"><span class="skill-badge magnetic-item">JavaScript
+                                </span><span class="skill-badge magnetic-item">React & Next.js</span><span
+                                class="skill-badge magnetic-item">HTML5 & CSS3</span><span
+                                class="skill-badge magnetic-item">MaterialUI</span><span
+                                class="skill-badge magnetic-item">Tailwind CSS</span><span
+                                class="skill-badge magnetic-item">Java</span><span
+                                class="skill-badge magnetic-item">JDBC</span><span
+                                class="skill-badge magnetic-item">Canva</span><span
+                                class="skill-badge magnetic-item">MySQL</span><span
+                                class="skill-badge magnetic-item">Git & GitHub</span></div>
+                                
+                    </div>
+                </div>
+            </div>
+            <style>
+                .skill-badge {
+                    background-color: #1e293b;
+                    color: #94a3b8;
+                    padding: 0.5rem 1rem;
+                    border-radius: 9999px;
+                    font-weight: 500;
+                    border: 1px solid #334155;
+                    transition: all 0.3s ease;
+                }
+
+                .skill-badge:hover {
+                    color: white;
+                    background-color: #334155;
+                    transform: translateY(-2px);
+                    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+                }
+            </style>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 lg:px-16">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white fade-in-up">Professional Journey</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto fade-in-up" style="transition-delay: 150ms;">My
+                        career path and key accomplishments.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item left fade-in-up">
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold text-white">Web Development Intern.</h3>
+                            <p class="text-indigo-400 font-medium mb-2">Dizi Global Solution | Aug 2025 - Present</p>
+                            <p class="text-slate-400">Creating and enhancing client websites by developing responsive layouts, 
+                                refining existing codebases, and implementing modern design practices to deliver optimized, 
+                                user-friendly experiences.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right fade-in-up">
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold text-white">Website Development Intern</h3>
+                            <p class="text-indigo-400 font-medium mb-2">EI Systems Services | Jul 2025 - Aug 2025</p>
+                            <p class="text-slate-400">Developed DevSpark, a modern and responsive website showcasing projects, 
+                                skills, and professional journey with a clean design and interactive user experience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left fade-in-up">
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold text-white">Web Development Intern.</h3>
+                            <p class="text-indigo-400 font-medium mb-2">Prodigy InfoTech | Feb 2025 - Mar 2025</p>
+                            <p class="text-slate-400">Developed multiple projects including a modern landing page, an interactive
+                                 quiz app with scoring features, and a responsive personal portfolio website to showcase skills
+                                  and projects.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right fade-in-up">
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold text-white">Web Development Intern.</h3>
+                            <p class="text-indigo-400 font-medium mb-2">Octanet Pvt Ltd. | Aug 2024 - Sept 2024</p>
+                            <p class="text-slate-400">Built websites, including landing pages, Tic Tac Toe and Calculator
+                                 apps, and a portfolio, focusing on clean code and user-friendly design.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left fade-in-up">
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold text-white">Graphic Designer Trainee.</h3>
+                            <p class="text-indigo-400 font-medium mb-2">GauravGo Technologies Pvt Ltd. | Sept 2024 - Nov 2024</p>
+                            <p class="text-slate-400">Created various graphic designs including posters, banners, background 
+                                images, and engaging social media posts, combining creativity with modern design trends to 
+                                enhance visual communication.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32 section-bg">
+            <div class="container mx-auto px-6 lg:px-16 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white fade-in-up">Featured Projects</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto fade-in-up" style="transition-delay: 150ms;">A
+                        selection of my work. Each project is a unique piece of development.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="project-card bg-slate-800 rounded-lg overflow-hidden shadow-lg fade-in-up"
+                        style="transition-delay: 300ms;">
+                        <div class="relative overflow-hidden"><img
+                                src="Screenshot 2025-08-21 202114.png" alt="Project Alpha"
+                                class="w-full h-auto transition-transform duration-500">
+                            <div
+                                class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
+                                <h3 class="text-2xl font-bold text-white mb-2">Grand Hotel</h3>
+                                <p class="text-slate-300 mb-4">Hotel booking site with elegant UI and room details using Html & CSS.</p><a href="https://grand-hotels.netlify.app/"
+                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-slate-800 rounded-lg overflow-hidden shadow-lg fade-in-up"
+                        style="transition-delay: 450ms;">
+                        <div class="relative overflow-hidden"><img
+                                src="Screenshot 2025-08-21 065354.png" alt="Project Beta"
+                                class="w-full h-auto transition-transform duration-500">
+                            <div
+                                class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
+                                <h3 class="text-2xl font-bold text-white mb-2">DevSpark</h3>
+                                <p class="text-slate-300 mb-4">React-based Edtech website highlighting development projects and skills.
+                                </p><a href="https://react-website-dev-spark.vercel.app/" class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details
+                                    &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-slate-800 rounded-lg overflow-hidden shadow-lg fade-in-up"
+                        style="transition-delay: 600ms;">
+                        <div class="relative overflow-hidden"><img
+                                src="Screenshot 2025-08-21 201812.png" alt="Project Gamma"
+                                class="w-full h-auto transition-transform duration-500">
+                            <div
+                                class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
+                                <h3 class="text-2xl font-bold text-white mb-2">VedaStructure</h3>
+                                <p class="text-slate-300 mb-4">React based website to sell spritual products.</p><a href="https://dizi-frontend.vercel.app/"
+                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-slate-800 rounded-lg overflow-hidden shadow-lg fade-in-up"
+                        style="transition-delay: 600ms;">
+                        <div class="relative overflow-hidden"><img
+                                src="Screenshot 2025-08-21 202328.png" alt="Project Gamma"
+                                class="w-full h-auto transition-transform duration-500">
+                            <div
+                                class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
+                                <h3 class="text-2xl font-bold text-white mb-2">Student Alumni Association</h3>
+                                <p class="text-slate-300 mb-4">A collaborative project management tool with real-time
+                                    features.</p><a href="https://lively-chimera-41f13e.netlify.app/"
+                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-slate-800 rounded-lg overflow-hidden shadow-lg fade-in-up"
+                        style="transition-delay: 600ms;">
+                        <div class="relative overflow-hidden"><img
+                                src="Screenshot 2025-08-21 202407.png" alt="Project Gamma"
+                                class="w-full h-auto transition-transform duration-500">
+                            <div
+                                class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
+                                <h3 class="text-2xl font-bold text-white mb-2">Spotify Clone</h3>
+                                <p class="text-slate-300 mb-4">Spotify clone displaying music playlists and playback features.</p><a href="https://clonedd-spotifyy.netlify.app/"
+                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="project-card bg-slate-800 rounded-lg overflow-hidden shadow-lg fade-in-up"
+                        style="transition-delay: 600ms;">
+                        <div class="relative overflow-hidden"><img
+                                src="Screenshot 2025-08-21 202630.png" alt="Project Gamma"
+                                class="w-full h-auto transition-transform duration-500">
+                            <div
+                                class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
+                                <h3 class="text-2xl font-bold text-white mb-2">Quiz App</h3>
+                                <p class="text-slate-300 mb-4">Interactive quiz app with questions, timer, and scoring system.</p><a href="https://quiz-app-delta-jade-72.vercel.app/"
+                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 md:py-32 section-bg">
+            <div class="container mx-auto px-6 lg:px-16">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white fade-in-up">Certifications & Awards</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto fade-in-up" style="transition-delay: 150ms;">
+                        Recognition of my skills and dedication to continuous learning.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                    <a href="certificates/javascrip essentials.png" target="_blank" class="certification-card block bg-slate-800/50 p-8 rounded-lg border border-slate-700 fade-in-up" style="transition-delay: 300ms;">
+                        <div class="absolute inset-0 bg-cover bg-center cert-bg opacity-10" style="background-image: url('certificates/javascrip essentials.png');"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-xl font-bold text-white">JavaScript Essentials -1 </h3>
+                            <p class="text-indigo-400 mt-2">Cisco Learning Academy </p>
+                        </div>
+                    </a>
+                    <a href="certificates/java fundamenta.png" target="_blank" class="certification-card block bg-slate-800/50 p-8 rounded-lg border border-slate-700 fade-in-up" style="transition-delay: 450ms;">
+                        <div class="absolute inset-0 bg-cover bg-center cert-bg opacity-10" style="background-image: url('certificates/java fundamenta.png');"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-xl font-bold text-white"> Java Programming Fundamentals</h3>
+                            <p class="text-indigo-400 mt-2">Infosys SpringBoard</p>
+                        </div>
+                    </a>
+                    <a href="certificates/code cracker.jpg" target="_blank" class="certification-card block bg-slate-800/50 p-8 rounded-lg border border-slate-700 fade-in-up" style="transition-delay: 600ms;">
+                        <div class="absolute inset-0 bg-cover bg-center cert-bg opacity-10" style="background-image: url('certificates/code cracker.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-xl font-bold text-white">Code Crackers</h3>
+                            <p class="text-indigo-400 mt-2">Kashi IT</p>
+                        </div>
+                    </a>
+                    <a href="certificates/graphic design.jpg" target="_blank" class="certification-card block bg-slate-800/50 p-8 rounded-lg border border-slate-700 fade-in-up" style="transition-delay: 600ms;">
+                        <div class="absolute inset-0 bg-cover bg-center cert-bg opacity-10" style="background-image: url('certificates/graphic design.jpg');"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-xl font-bold text-white">Graphi Design Workshop</h3>
+                            <p class="text-indigo-400 mt-2">Kashi IT</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Graphic Designs Section -->
+        <section id="designs" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 lg:px-16">
+                 <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white fade-in-up">Graphic Designs</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto fade-in-up" style="transition-delay: 150ms;">
+                        A glimpse into my creative and design work.
+                    </p>
+                </div>
+            </div>
+            <div class="scroller-container fade-in-up" style="transition-delay: 300ms;">
+                <div class="scroller-track">
+                    <!-- Images are duplicated for a seamless loop -->
+                    <div class="scroller-item"><img src="/graphics/1Cr 15Y.png" alt="Graphic Design 1"></div>
+                    <div class="scroller-item"><img src="graphics/freshers party poster 44.png" alt="Graphic Design 2"></div>
+                    <div class="scroller-item"><img src="graphics/linkedin banner.png" alt="Graphic Design 3"></div>
+                    <div class="scroller-item"><img src="graphics/freshers party poster.png" alt="Graphic Design 4"></div>
+                    <div class="scroller-item"><img src="graphics/Module.png" alt="Graphic Design 5"></div>
+                    <div class="scroller-item"><img src="graphics/Nitin_Desinz.png" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/png_20230625_094356_0000.png" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/TVF.png" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/WhatsApp Image 2023-09-05 at 22.18.39n.jpg" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/WhatsApp Image 2023-09-05 at 22.18.40.jpg" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/WhatsApp Image 2023-09-05 at 22.18.40n.jpg" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/WhatsApp Image 2023-09-05 at 22.18.41n.jpg" alt="Graphic Design 6"></div>
+                    <!-- Duplicates -->
+                    <div class="scroller-item"><img src="/graphics/1Cr 15Y.png" alt="Graphic Design 1"></div>
+                    <div class="scroller-item"><img src="graphics/freshers party poster 44.png" alt="Graphic Design 2"></div>
+                    <div class="scroller-item"><img src="graphics/linkedin banner.png" alt="Graphic Design 3"></div>
+                    <div class="scroller-item"><img src="graphics/freshers party poster.png" alt="Graphic Design 4"></div>
+                    <div class="scroller-item"><img src="graphics/Module.png" alt="Graphic Design 5"></div>
+                    <div class="scroller-item"><img src="graphics/Nitin_Desinz.png" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/png_20230625_094356_0000.png" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/TVF.png" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/WhatsApp Image 2023-09-05 at 22.18.39n.jpg" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/WhatsApp Image 2023-09-05 at 22.18.40.jpg" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/WhatsApp Image 2023-09-05 at 22.18.40n.jpg" alt="Graphic Design 6"></div>
+                    <div class="scroller-item"><img src="graphics/WhatsApp Image 2023-09-05 at 22.18.41n.jpg" alt="Graphic Design 6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 section-bg">
+            <div class="container mx-auto px-6 lg:px-16">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white fade-in-up">Get In Touch</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto fade-in-up" style="transition-delay: 150ms;">Have a
+                        project in mind or just want to say hello? Fill out the form below and I'll get back to you.</p>
+                </div>
+                <div class="max-w-2xl mx-auto fade-in-up" style="transition-delay: 300ms;">
+                    <form id="contact-form" action="https://formspree.io/f/mnnzevaq" method="POST"
+                        class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div><label for="name"
+                                    class="block text-sm font-medium text-slate-300 mb-2">Name</label><input type="text"
+                                    id="name" name="name" required class="form-input"></div>
+                            <div><label for="email"
+                                    class="block text-sm font-medium text-slate-300 mb-2">Email</label><input
+                                    type="email" id="email" name="email" required class="form-input"></div>
+                        </div>
+                        <div><label for="message"
+                                class="block text-sm font-medium text-slate-300 mb-2">Message</label><textarea
+                                id="message" name="message" rows="5" required class="form-input"></textarea></div>
+                        <div class="text-center"><button type="submit"
+                                class="bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-indigo-700 inline-block premium-button magnetic-item">Send
+                                Message</button></div>
+                    </form>
+                    <p id="form-status" class="text-center mt-6"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-800 relative z-10">
+        <div class="container mx-auto px-6 lg:px-16 py-8 text-center text-slate-400">
+            <p>&copy; Nitin Kumar Maurya. All Rights Reserved.</p>
+            <p class="text-sm mt-2">Designed & Built with <span class="text-red-500">&hearts;</span></p>
+        </div>
+    </footer>
+
+    <button id="scroll-to-top" title="Go to top"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const preloader = document.getElementById('preloader');
+
+            // --- Hero Headline Animation ---
+            function animateHeadline() {
+                const wordSpans = document.querySelectorAll('#hero-headline .word');
+                wordSpans.forEach((span, index) => {
+                    setTimeout(() => {
+                        span.style.transform = 'translateY(0)';
+                    }, 200 * index);
+                });
+            }
+
+            // --- Preloader & Video Player ---
+            window.addEventListener('load', () => {
+                // This script ensures the video attempts to play once the page is loaded.
+                // The `autoplay` attribute can be unreliable on its own in some browsers.
+                const video = document.getElementById('site-background');
+                video.play().catch(error => {
+                    console.error("Video autoplay was prevented by the browser:", error);
+                    // You could optionally show a play button or a static image here as a fallback.
+                });
+
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    animateHeadline();
+                    // Trigger scroll animations for elements already in view
+                    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+                }, 500);
+            });
+
+            // --- Custom Cursor Logic ---
+            const cursor = document.querySelector('.cursor');
+            const follower = document.querySelector('.cursor-follower');
+            let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+            const delay = 0.1;
+
+            document.addEventListener('mousemove', e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.left = mouseX + 'px';
+                cursor.style.top = mouseY + 'px';
+            });
+
+            function animateFollower() {
+                followerX += (mouseX - followerX) * delay;
+                followerY += (mouseY - followerY) * delay;
+                follower.style.left = followerX + 'px';
+                follower.style.top = followerY + 'px';
+                requestAnimationFrame(animateFollower);
+            }
+            animateFollower();
+
+            // --- Magnetic Item Effect ---
+            const magneticItems = document.querySelectorAll('.magnetic-item');
+            magneticItems.forEach(item => {
+                item.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
+                item.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); item.style.transform = 'translate(0, 0)'; });
+                item.addEventListener('mousemove', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
+                    const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
+                    item.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+            // --- Header Style on Scroll ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.style.paddingTop = window.scrollY > 50 ? '0.5rem' : '1rem';
+                header.style.paddingBottom = window.scrollY > 50 ? '0.5rem' : '1rem';
+            });
+
+            // --- Scroll Animation Observer ---
+            const animatedElements = document.querySelectorAll('.fade-in-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            // We observe elements after the page loads to avoid premature triggers
+
+            // --- Smooth scrolling for anchor links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        if (!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // --- Scroll to Top Button ---
+            const scrollTopBtn = document.getElementById('scroll-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Contact Form Submission ---
+            const form = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+
+            async function handleSubmit(event) {
+                event.preventDefault();
+                const data = new FormData(event.target);
+                try {
+                    const response = await fetch(event.target.action, {
+                        method: form.method,
+                        body: data,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (response.ok) {
+                        formStatus.textContent = "Thanks for your submission!";
+                        formStatus.style.color = '#34d399';
+                        form.reset();
+                    } else {
+                        const responseData = await response.json();
+                        if (Object.hasOwn(responseData, 'errors')) {
+                            formStatus.textContent = responseData["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            formStatus.textContent = "Oops! There was a problem submitting your form";
+                        }
+                        formStatus.style.color = '#f87171';
+                    }
+                } catch (error) {
+                    formStatus.textContent = "Oops! There was a problem submitting your form";
+                    formStatus.style.color = '#f87171';
+                }
+            }
+            form.addEventListener("submit", handleSubmit);
+        });
+
+        const roles = ["Full-Stack Developer", "Frontend Developer", "Graphic Designer"];
+        let roleIndex = 0;
+        let charIndex = 0;
+        const typingText = document.getElementById("typing-text");
+
+        function typeEffect() {
+            if (charIndex < roles[roleIndex].length) {
+                typingText.textContent += roles[roleIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeEffect, 100);
+            } else {
+                setTimeout(eraseEffect, 1500);
+            }
+        }
+
+        function eraseEffect() {
+            if (charIndex > 0) {
+                typingText.textContent = roles[roleIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseEffect, 50);
+            } else {
+                roleIndex = (roleIndex + 1) % roles.length;
+                setTimeout(typeEffect, 200);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            typeEffect();
+        });
+    </script>
+</body>
+
+</html>
