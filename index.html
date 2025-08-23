@@ -8,14 +8,14 @@
     <link rel="icon" href="/6140938905927668434.jpg" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Custom CSS for animations and premium feel -->
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: #0a0a0a;
             color: #e2e8f0;
             overflow-x: hidden;
@@ -27,13 +27,11 @@
         /* Site-wide Background Video */
         #site-background {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
             z-index: -2;
             filter: blur(2px);
         }
@@ -65,7 +63,7 @@
             position: absolute;
             width: 100vw;
             height: 100vh;
-            background-image: radial-gradient(circle, rgba(79, 70, 229, 0.3) 0%, rgba(79, 70, 229, 0) 50%);
+            background-image: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, rgba(251, 191, 36, 0) 50%);
             border-radius: 50%;
             animation: moveAurora 25s infinite linear;
             top: 50%;
@@ -74,7 +72,7 @@
         }
 
         .aurora-background::after {
-            background-image: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0) 50%);
+            background-image: radial-gradient(circle, rgba(253, 224, 71, 0.2) 0%, rgba(253, 224, 71, 0) 50%);
             animation-delay: -12s;
         }
 
@@ -110,7 +108,7 @@
             width: 50px;
             height: 50px;
             border: 4px solid #334155;
-            border-top-color: #6366f1;
+            border-top-color: #fbbf24;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -137,7 +135,7 @@
         .cursor-follower {
             width: 40px;
             height: 40px;
-            background-color: rgba(130, 140, 248, 0.2);
+            background-color: rgba(251, 191, 36, 0.2);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -168,12 +166,12 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #4f46e5;
+            background: #f59e0b;
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #6366f1;
+            background: #fbbf24;
         }
 
         /* Glassmorphism header */
@@ -186,7 +184,7 @@
 
         /* Gradient text */
         .gradient-text {
-            background: linear-gradient(to right, #818cf8, #c084fc);
+            background: linear-gradient(to right, #fde047, #fbbf24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -202,12 +200,14 @@
         }
 
         .project-card {
+            position: relative;
             transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(124, 58, 237, 0.4);
+            transform: scale(1.03);
+            z-index: 10;
+            box-shadow: 0 0 35px rgba(251, 191, 36, 0.4);
         }
 
         /* Premium button hover glow */
@@ -216,7 +216,7 @@
         }
 
         .premium-button:hover {
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
             transform: scale(1.05);
         }
 
@@ -231,27 +231,14 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Hero Text Animation */
-        #hero-headline .word-wrapper {
-            display: inline-block;
-            overflow: hidden;
-            vertical-align: bottom;
-        }
-
-        #hero-headline .word {
-            display: block;
-            transform: translateY(110%);
-            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
+        
         /* Hero Image Style */
         .hero-image-container {
             position: relative;
             padding: 8px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #4f46e5, #c084fc);
-            box-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+            background: linear-gradient(45deg, #fde047, #d97706);
+            box-shadow: 0 0 40px rgba(251, 191, 36, 0.5);
         }
 
         .hero-image-container img {
@@ -291,7 +278,7 @@
             height: 20px;
             right: -10px;
             background-color: #0a0a0a;
-            border: 4px solid #4f46e5;
+            border: 4px solid #fbbf24;
             top: 25px;
             border-radius: 50%;
             z-index: 1;
@@ -345,8 +332,9 @@
         }
 
         .timeline-content:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(124, 58, 237, 0.3);
+            transform: scale(1.03);
+            z-index: 10;
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.3);
         }
 
         @media screen and (max-width: 768px) {
@@ -391,18 +379,29 @@
 
         .form-input:focus {
             outline: none;
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5);
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.5);
         }
 
         /* Certification Card Hover */
         .certification-card {
+            position: relative;
             transition: box-shadow 0.3s ease, transform 0.3s ease;
+            overflow: hidden;
         }
 
         .certification-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(124, 58, 237, 0.3);
+            transform: scale(1.03);
+            z-index: 10;
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.3);
+        }
+
+        .certification-card .cert-bg {
+            transition: opacity 0.3s ease;
+        }
+
+        .certification-card:hover .cert-bg {
+            opacity: 0.25;
         }
 
         /* Scroll to top button */
@@ -410,8 +409,8 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #4f46e5;
-            color: white;
+            background-color: #fbbf24;
+            color: #0a0a0a;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -438,7 +437,7 @@
         .section-bg {
             background-image: radial-gradient(circle at 50% 50%, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0) 70%);
         }
-
+        
         /* Design Gallery Scroller */
         .scroller-container {
             max-width: 100%;
@@ -483,8 +482,9 @@
         .scroller-item:hover {
             transform: scale(1.05);
             z-index: 10;
-            box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
         }
+
     </style>
 </head>
 
@@ -495,7 +495,7 @@
     </div>
 
     <video autoplay loop muted playsinline id="site-background">
-        <source src="bg video.mp4" type="video/mp4">
+        <source src="bg video2.mp4" type="video/mp4">
     </video>
     <div class="aurora-background"></div>
     <div id="site-background-overlay"></div>
@@ -519,7 +519,7 @@
                     class="text-slate-300 hover:text-white transition duration-300 magnetic-item">Contact</a>
             </nav>
             <a href="#contact"
-                class="hidden md:block bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg premium-button magnetic-item">Hire
+                class="hidden md:block bg-amber-500 hover:bg-amber-600 text-black font-medium py-2 px-4 rounded-lg premium-button magnetic-item">Hire
                 Me</a>
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none magnetic-item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -536,7 +536,7 @@
             <a href="#certifications" class="block py-2 text-slate-300 hover:text-white">Certifications</a>
             <a href="#contact" class="block py-2 text-slate-300 hover:text-white">Contact</a>
             <a href="#contact"
-                class="block mt-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg text-center">Hire
+                class="block mt-2 bg-amber-500 hover:bg-amber-600 text-black font-medium py-2 px-4 rounded-lg text-center">Hire
                 Me</a>
         </div>
     </header>
@@ -549,21 +549,32 @@
                     <!-- Left Column: Text Content -->
                     <div class="text-center md:text-left">
                         <h1 id="hero-headline"
-                            class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4 min-h-[100px] md:min-h-[120px] lg:min-h-[144px]">
-                            I'm a <span id="typing-text" class="gradient-text"></span>
+                            class="relative text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4">
+                            <span class="invisible">I'm a Full-Stack Developer</span>
+                            <div class="absolute inset-0">
+                                I'm a <span id="typing-text" class="gradient-text"></span>
+                            </div>
                         </h1>
                         <p class="text-lg md:text-xl text-slate-300 max-w-xl mx-auto md:mx-0 mb-8 fade-in-up"
                             style="transition-delay: 400ms;">
                             I design and build beautiful, responsive, and user-centric web applications that leave a
                             lasting impression.
                         </p>
-                        <div class="flex gap-4 justify-center md:justify-start">
+                        <div class="flex gap-4 justify-center md:justify-start mb-8">
                             <a href="#projects"
-                                class="bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-indigo-700 inline-block premium-button magnetic-item fade-in-up"
+                                class="bg-amber-500 text-black font-semibold py-3 px-8 rounded-lg text-lg hover:bg-amber-600 inline-block premium-button magnetic-item fade-in-up"
                                 style="transition-delay: 600ms;">View My Work</a>
                             <a href="resume_nitin_kumar_maurya.pdf" target="_blank"
                                 class="bg-slate-700 text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-slate-600 inline-block premium-button magnetic-item fade-in-up"
                                 style="transition-delay: 700ms;">Download Resume</a>
+                        </div>
+                        <!-- Social Media Icons -->
+                        <div class="flex justify-center md:justify-start space-x-6 fade-in-up" style="transition-delay: 800ms;">
+                             <a href="#" target="_blank" class="text-slate-400 hover:text-white transition-transform hover:scale-110"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.206v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.47 1.3h2.94v8.59H3.535v-8.59zM17.638 2H6.362A4.362 4.362 0 002 6.362v11.276A4.362 4.362 0 006.362 22h11.276A4.362 4.362 0 0022 17.638V6.362A4.362 4.362 0 0017.638 2z"></path></svg></a>
+                            <a href="#" target="_blank" class="text-slate-400 hover:text-white transition-transform hover:scale-110"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                            <a href="https://github.com/your-github" target="_blank" class="text-slate-400 hover:text-white transition-transform hover:scale-110"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg></a>
+                            <a href="#" target="_blank" class="text-slate-400 hover:text-white transition-transform hover:scale-110"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.17.91-.494 1.208-.822 1.23-.696.047-1.225-.46-1.9-0.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.04-.249-.024c-.106.024-1.743 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.662 3.468-1.35 5.764-2.27 6.819-2.74.17-.074 1.058-.453 1.466-.453z"></path></svg></a>
+                            <a href="https://leetcode.com/your-leetcode" target="_blank" class="text-slate-400 hover:text-white transition-transform hover:scale-110"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.483 0a1.374 1.374 0 0 0-1.374 1.374v18.75a1.374 1.374 0 0 0 1.374 1.374h6.25a1.374 1.374 0 0 0 1.374-1.374V1.374A1.374 1.374 0 0 0 19.733 0h-6.25zM4.267 6.25a1.374 1.374 0 0 0-1.374 1.374v12.5a1.374 1.374 0 0 0 1.374 1.374h6.25a1.374 1.374 0 0 0 1.374-1.374V7.624a1.374 1.374 0 0 0-1.374-1.374H4.267z"></path></svg></a>
                         </div>
                     </div>
 
@@ -584,29 +595,24 @@
                 <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div class="fade-in-up">
                         <h2 class="text-4xl font-bold mb-4 text-white">About Me</h2>
-                        <p class="text-slate-400 mb-6 text-lg">Hello! I'm Nitin Kumar Maurya, a versatile Web 
-                            Developer and Designer with hands-on experience in HTML, CSS, JavaScript, React, 
-                            Figma, and Canva. I specialize in crafting responsive websites and intuitive user 
-                            interfaces that balance functionality with modern design. Passionate about 
-                            delivering seamless digital experiences, I focus on writing clean code and creating 
-                            engaging visuals that leave a lasting impression.</p>
-                        <p class="text-slate-400 mb-8 text-lg">When I'm not coding, you can find me exploring the latest
-                            design trends, contributing to open-source projects, or brewing the perfect cup of coffee.
+                        <p class="text-slate-400 mb-6 text-lg">Hello! I'm Nitin Kumar Maurya, a passionate and creative Web Developer and Designer. I specialize in building modern, responsive websites and intuitive user interfaces using a range of technologies including HTML, CSS, JavaScript, and React. My goal is to create seamless and engaging digital experiences that are both functional and visually appealing.</p>
+                        <p class="text-slate-400 mb-8 text-lg">Beyond coding and design, I'm always exploring new creative avenues, contributing to interesting projects, and enjoying the process of learning and growing as a developer.
                         </p>
                     </div>
                     <div class="fade-in-up" style="transition-delay: 200ms;">
                         <h3 class="text-2xl font-semibold mb-6 text-white">My Skillset</h3>
-                        <div class="flex flex-wrap gap-4"><span class="skill-badge magnetic-item">JavaScript
-                                </span><span class="skill-badge magnetic-item">React & Next.js</span><span
-                                class="skill-badge magnetic-item">HTML5 & CSS3</span><span
-                                class="skill-badge magnetic-item">MaterialUI</span><span
-                                class="skill-badge magnetic-item">Tailwind CSS</span><span
-                                class="skill-badge magnetic-item">Java</span><span
-                                class="skill-badge magnetic-item">JDBC</span><span
-                                class="skill-badge magnetic-item">Canva</span><span
-                                class="skill-badge magnetic-item">MySQL</span><span
-                                class="skill-badge magnetic-item">Git & GitHub</span></div>
-                                
+                        <div class="flex flex-wrap gap-4">
+                            <span class="skill-badge magnetic-item">React</span>
+                            <span class="skill-badge magnetic-item">JavaScript (ES6+)</span>
+                            <span class="skill-badge magnetic-item">HTML5</span>
+                            <span class="skill-badge magnetic-item">CSS3</span>
+                            <span class="skill-badge magnetic-item">Tailwind CSS</span>
+                            <span class="skill-badge magnetic-item">Java</span>
+                            <span class="skill-badge magnetic-item">SQL</span>
+                            <span class="skill-badge magnetic-item">Figma</span>
+                            <span class="skill-badge magnetic-item">Canva</span>
+                            <span class="skill-badge magnetic-item">Git & GitHub</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -625,7 +631,7 @@
                     color: white;
                     background-color: #334155;
                     transform: translateY(-2px);
-                    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+                    box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
                 }
             </style>
         </section>
@@ -642,7 +648,7 @@
                     <div class="timeline-item left fade-in-up">
                         <div class="timeline-content">
                             <h3 class="text-xl font-bold text-white">Web Development Intern.</h3>
-                            <p class="text-indigo-400 font-medium mb-2">Dizi Global Solution | Aug 2025 - Present</p>
+                            <p class="text-amber-400 font-medium mb-2">Dizi Global Solution | Aug 2025 - Present</p>
                             <p class="text-slate-400">Creating and enhancing client websites by developing responsive layouts, 
                                 refining existing codebases, and implementing modern design practices to deliver optimized, 
                                 user-friendly experiences.</p>
@@ -651,7 +657,7 @@
                     <div class="timeline-item right fade-in-up">
                         <div class="timeline-content">
                             <h3 class="text-xl font-bold text-white">Website Development Intern</h3>
-                            <p class="text-indigo-400 font-medium mb-2">EI Systems Services | Jul 2025 - Aug 2025</p>
+                            <p class="text-amber-400 font-medium mb-2">EI Systems Services | Jul 2025 - Aug 2025</p>
                             <p class="text-slate-400">Developed DevSpark, a modern and responsive website showcasing projects, 
                                 skills, and professional journey with a clean design and interactive user experience.</p>
                         </div>
@@ -660,7 +666,7 @@
                     <div class="timeline-item left fade-in-up">
                         <div class="timeline-content">
                             <h3 class="text-xl font-bold text-white">Web Development Intern.</h3>
-                            <p class="text-indigo-400 font-medium mb-2">Prodigy InfoTech | Feb 2025 - Mar 2025</p>
+                            <p class="text-amber-400 font-medium mb-2">Prodigy InfoTech | Feb 2025 - Mar 2025</p>
                             <p class="text-slate-400">Developed multiple projects including a modern landing page, an interactive
                                  quiz app with scoring features, and a responsive personal portfolio website to showcase skills
                                   and projects.</p>
@@ -670,7 +676,7 @@
                     <div class="timeline-item right fade-in-up">
                         <div class="timeline-content">
                             <h3 class="text-xl font-bold text-white">Web Development Intern.</h3>
-                            <p class="text-indigo-400 font-medium mb-2">Octanet Pvt Ltd. | Aug 2024 - Sept 2024</p>
+                            <p class="text-amber-400 font-medium mb-2">Octanet Pvt Ltd. | Aug 2024 - Sept 2024</p>
                             <p class="text-slate-400">Built websites, including landing pages, Tic Tac Toe and Calculator
                                  apps, and a portfolio, focusing on clean code and user-friendly design.</p>
                         </div>
@@ -678,7 +684,7 @@
                     <div class="timeline-item left fade-in-up">
                         <div class="timeline-content">
                             <h3 class="text-xl font-bold text-white">Graphic Designer Trainee.</h3>
-                            <p class="text-indigo-400 font-medium mb-2">GauravGo Technologies Pvt Ltd. | Sept 2024 - Nov 2024</p>
+                            <p class="text-amber-400 font-medium mb-2">GauravGo Technologies Pvt Ltd. | Sept 2024 - Nov 2024</p>
                             <p class="text-slate-400">Created various graphic designs including posters, banners, background 
                                 images, and engaging social media posts, combining creativity with modern design trends to 
                                 enhance visual communication.</p>
@@ -707,7 +713,7 @@
                                 class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
                                 <h3 class="text-2xl font-bold text-white mb-2">Grand Hotel</h3>
                                 <p class="text-slate-300 mb-4">Hotel booking site with elegant UI and room details using Html & CSS.</p><a href="https://grand-hotels.netlify.app/"
-                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                                    class="text-amber-400 hover:text-amber-300 font-semibold">View Details &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -720,7 +726,7 @@
                                 class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
                                 <h3 class="text-2xl font-bold text-white mb-2">DevSpark</h3>
                                 <p class="text-slate-300 mb-4">React-based Edtech website highlighting development projects and skills.
-                                </p><a href="https://react-website-dev-spark.vercel.app/" class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details
+                                </p><a href="https://react-website-dev-spark.vercel.app/" class="text-amber-400 hover:text-amber-300 font-semibold">View Details
                                     &rarr;</a>
                             </div>
                         </div>
@@ -734,7 +740,7 @@
                                 class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
                                 <h3 class="text-2xl font-bold text-white mb-2">VedaStructure</h3>
                                 <p class="text-slate-300 mb-4">React based website to sell spritual products.</p><a href="https://dizi-frontend.vercel.app/"
-                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                                    class="text-amber-400 hover:text-amber-300 font-semibold">View Details &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -748,7 +754,7 @@
                                 <h3 class="text-2xl font-bold text-white mb-2">Student Alumni Association</h3>
                                 <p class="text-slate-300 mb-4">A collaborative project management tool with real-time
                                     features.</p><a href="https://lively-chimera-41f13e.netlify.app/"
-                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                                    class="text-amber-400 hover:text-amber-300 font-semibold">View Details &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -761,7 +767,7 @@
                                 class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
                                 <h3 class="text-2xl font-bold text-white mb-2">Spotify Clone</h3>
                                 <p class="text-slate-300 mb-4">Spotify clone displaying music playlists and playback features.</p><a href="https://clonedd-spotifyy.netlify.app/"
-                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                                    class="text-amber-400 hover:text-amber-300 font-semibold">View Details &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -774,7 +780,7 @@
                                 class="project-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center p-6 text-center opacity-0 transform translateY-full transition-all duration-500">
                                 <h3 class="text-2xl font-bold text-white mb-2">Quiz App</h3>
                                 <p class="text-slate-300 mb-4">Interactive quiz app with questions, timer, and scoring system.</p><a href="https://quiz-app-delta-jade-72.vercel.app/"
-                                    class="text-indigo-400 hover:text-indigo-300 font-semibold">View Details &rarr;</a>
+                                    class="text-amber-400 hover:text-amber-300 font-semibold">View Details &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -795,28 +801,28 @@
                         <div class="absolute inset-0 bg-cover bg-center cert-bg opacity-10" style="background-image: url('certificates/javascrip essentials.png');"></div>
                         <div class="relative z-10">
                             <h3 class="text-xl font-bold text-white">JavaScript Essentials -1 </h3>
-                            <p class="text-indigo-400 mt-2">Cisco Learning Academy </p>
+                            <p class="text-amber-400 mt-2">Cisco Learning Academy </p>
                         </div>
                     </a>
                     <a href="certificates/java fundamenta.png" target="_blank" class="certification-card block bg-slate-800/50 p-8 rounded-lg border border-slate-700 fade-in-up" style="transition-delay: 450ms;">
                         <div class="absolute inset-0 bg-cover bg-center cert-bg opacity-10" style="background-image: url('certificates/java fundamenta.png');"></div>
                         <div class="relative z-10">
                             <h3 class="text-xl font-bold text-white"> Java Programming Fundamentals</h3>
-                            <p class="text-indigo-400 mt-2">Infosys SpringBoard</p>
+                            <p class="text-amber-400 mt-2">Infosys SpringBoard</p>
                         </div>
                     </a>
                     <a href="certificates/code cracker.jpg" target="_blank" class="certification-card block bg-slate-800/50 p-8 rounded-lg border border-slate-700 fade-in-up" style="transition-delay: 600ms;">
                         <div class="absolute inset-0 bg-cover bg-center cert-bg opacity-10" style="background-image: url('certificates/code cracker.jpg');"></div>
                         <div class="relative z-10">
                             <h3 class="text-xl font-bold text-white">Code Crackers</h3>
-                            <p class="text-indigo-400 mt-2">Kashi IT</p>
+                            <p class="text-amber-400 mt-2">Kashi IT</p>
                         </div>
                     </a>
                     <a href="certificates/graphic design.jpg" target="_blank" class="certification-card block bg-slate-800/50 p-8 rounded-lg border border-slate-700 fade-in-up" style="transition-delay: 600ms;">
                         <div class="absolute inset-0 bg-cover bg-center cert-bg opacity-10" style="background-image: url('certificates/graphic design.jpg');"></div>
                         <div class="relative z-10">
                             <h3 class="text-xl font-bold text-white">Graphi Design Workshop</h3>
-                            <p class="text-indigo-400 mt-2">Kashi IT</p>
+                            <p class="text-amber-400 mt-2">Kashi IT</p>
                         </div>
                     </a>
                 </div>
@@ -888,7 +894,7 @@
                                 class="block text-sm font-medium text-slate-300 mb-2">Message</label><textarea
                                 id="message" name="message" rows="5" required class="form-input"></textarea></div>
                         <div class="text-center"><button type="submit"
-                                class="bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-indigo-700 inline-block premium-button magnetic-item">Send
+                                class="bg-amber-500 text-black font-semibold py-3 px-8 rounded-lg text-lg hover:bg-amber-600 inline-block premium-button magnetic-item">Send
                                 Message</button></div>
                     </form>
                     <p id="form-status" class="text-center mt-6"></p>
@@ -1064,9 +1070,9 @@
             if (charIndex < roles[roleIndex].length) {
                 typingText.textContent += roles[roleIndex].charAt(charIndex);
                 charIndex++;
-                setTimeout(typeEffect, 100);
+                setTimeout(typeEffect, 150); // Slower typing
             } else {
-                setTimeout(eraseEffect, 1500);
+                setTimeout(eraseEffect, 2000); // Longer pause
             }
         }
 
@@ -1074,10 +1080,10 @@
             if (charIndex > 0) {
                 typingText.textContent = roles[roleIndex].substring(0, charIndex - 1);
                 charIndex--;
-                setTimeout(eraseEffect, 50);
+                setTimeout(eraseEffect, 75); // Slower erasing
             } else {
                 roleIndex = (roleIndex + 1) % roles.length;
-                setTimeout(typeEffect, 200);
+                setTimeout(typeEffect, 500); // Pause before typing new role
             }
         }
 
